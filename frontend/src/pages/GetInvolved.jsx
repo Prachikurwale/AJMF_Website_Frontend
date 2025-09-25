@@ -3,52 +3,80 @@
 import React from 'react';
 import SectionHeader from '../components/reusable/SectionHeader';
 
-// Prop 'type' can be 'donate' or 'volunteer' passed from App.jsx routing
-const GetInvolved = ({ type = 'donate' }) => {
-  
-  const isDonate = type === 'donate';
-  
-  const title = isDonate ? "Your Contribution Makes a Difference" : "Give Your Time, Share Your Skill";
-  const subTitle = isDonate ? "Support Our Students Today" : "Volunteer with AJMF";
+// Component for a styled input field
+const InputField = ({ type = 'text', placeholder, required = false }) => (
+    <input 
+        type={type} 
+        placeholder={placeholder} 
+        required={required} 
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-ajmf-blue focus:border-ajmf-blue transition duration-200"
+    />
+);
 
+const GetInvolved = () => {
+  
   return (
-    <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <SectionHeader title={title} subTitle={subTitle} alignment="center" />
+    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <SectionHeader title="Your Support Fuels Our Mission" subTitle="Get Involved" alignment="center" />
       
-      {isDonate ? (
-        <div className="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-cta-donate animate-fade-in">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6">Secure Donation Form</h3>
-          {/* Donation Form Placeholder */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10">
+        
+        {/* === COLUMN 1: DONATION FORM === */}
+        <div className="bg-ajmf-light p-8 rounded-xl shadow-2xl border-t-8 border-cta-donate animate-fade-in">
+          <h2 className="text-3xl font-bold text-ajmf-blue mb-4">Make a Donation</h2>
+          <p className="text-gray-700 mb-6">Every contribution goes directly towards student scholarships and skill development programs.</p>
+
           <form className="space-y-4">
-            <input type="number" placeholder="Enter Amount (₹)" required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-cta-donate focus:border-cta-donate" />
-            <div className="flex space-x-4">
-              <button type="button" className="px-4 py-2 border rounded-lg bg-gray-100">₹500</button>
-              <button type="button" className="px-4 py-2 border rounded-lg bg-gray-100">₹1,000</button>
-              <button type="button" className="px-4 py-2 border rounded-lg bg-gray-100">₹5,000</button>
+            
+            <h3 className="text-xl font-semibold text-ajmf-red">Amount:</h3>
+            {/* Quick Donation Buttons */}
+            <div className="flex space-x-3 mb-4">
+              <button type="button" className="px-5 py-2 border rounded-full bg-white text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm">₹500</button>
+              <button type="button" className="px-5 py-2 border rounded-full bg-white text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm">₹2,500</button>
+              <button type="button" className="px-5 py-2 border rounded-full bg-ajmf-saffron text-white font-medium hover:bg-opacity-90 transition shadow-md">₹5,000</button>
             </div>
+            
+            <InputField type="number" placeholder="Or Enter Custom Amount (₹)" required={true} />
+            
             <label className="flex items-center space-x-2 text-gray-600">
-              <input type="checkbox" className="form-checkbox text-cta-donate" />
-              <span>Make this a recurring donation</span>
+              <input type="checkbox" className="form-checkbox h-5 w-5 text-cta-donate rounded focus:ring-cta-donate" />
+              <span>Make this a recurring monthly donation</span>
             </label>
-            <button type="submit" className="w-full py-3 bg-cta-donate text-white font-bold rounded-lg hover:bg-opacity-90 transition shadow-lg">
-              Donate Now
-            </button>
+            
+            <div className="pt-4">
+                <button type="submit" className="w-full py-3 bg-cta-donate text-white font-bold rounded-lg hover:bg-opacity-90 transition shadow-xl transform hover:scale-[1.01] hover:bg-[#17a2b8]">
+                Donate Securely &rarr;
+                </button>
+            </div>
           </form>
         </div>
-      ) : (
-        <div className="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-ajmf-blue animate-fade-in">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6">Volunteer Signup</h3>
-          {/* Volunteer Form Placeholder */}
+
+        {/* === COLUMN 2: VOLUNTEER FORM === */}
+        <div className="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-ajmf-blue animate-fade-in">
+          <h2 className="text-3xl font-bold text-ajmf-red mb-4">Volunteer Your Skills</h2>
+          <p className="text-gray-700 mb-6">Share your expertise as a mentor or educator. Your time is invaluable.</p>
+
           <form className="space-y-4">
-            <input type="text" placeholder="Your Name" required className="w-full p-3 border border-gray-300 rounded-lg" />
-            <input type="email" placeholder="Email Address" required className="w-full p-3 border border-gray-300 rounded-lg" />
-            <textarea placeholder="Skills and Areas of Interest (Mentorship, Teaching, Events)" rows="4" className="w-full p-3 border border-gray-300 rounded-lg"></textarea>
-            <button type="submit" className="w-full py-3 bg-ajmf-blue text-white font-bold rounded-lg hover:bg-opacity-90 transition shadow-lg">
-              Submit Volunteer Application
-            </button>
+            <InputField placeholder="Your Full Name" required={true} />
+            <InputField type="email" placeholder="Email Address" required={true} />
+            <InputField placeholder="Your Profession/Skills (e.g., Python Developer, Digital Marketer)" required={true} />
+            
+            <textarea 
+                placeholder="Tell us about your interest and availability." 
+                rows="4" 
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-ajmf-blue focus:border-ajmf-blue  transition duration-200"
+            ></textarea>
+
+            <div className="pt-4">
+    <button type="submit" 
+  className="w-full py-3 bg-cta-inquire text-white font-bold rounded-lg shadow-xl transition duration-300 transform hover:scale-[1.01] hover:bg-[#E5760E] bg-4 bg-red-300 red border-4 border-red-500 h-20"
+>
+    Submit Volunteer Application
+</button>
+</div>
           </form>
         </div>
-      )}
+      </div>
     </div>
   );
 };
