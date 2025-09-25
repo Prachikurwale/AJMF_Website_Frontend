@@ -95,10 +95,10 @@ const Header = () => {
         <a href="/translate" className="text-gray-300 hover:text-white transition-colors duration-200">Translate</a>
 
         {/* CTAs on Row 1 */}
-        <a href="/inquire" className="px-4 py-1 bg-cta-inquire text-white font-bold rounded-sm text-sm hover:opacity-90 transition-all duration-300">
+        <a href="/inquire" className="px-4 py-1 bg-cta-inquire text-black font-bold rounded-sm text-sm hover:opacity-90 transition-all duration-300">
           Inquire
         </a>
-        <a href="/donate" className="px-4 py-1 bg-cta-donate text-white font-bold rounded-sm text-sm hover:opacity-90 transition-all duration-300">
+        <a href="/donate" className="px-4 py-1 bg-cta-donate text-black font-bold rounded-sm text-sm hover:opacity-90 transition-all duration-300">
           Donate
         </a>
       </div>
